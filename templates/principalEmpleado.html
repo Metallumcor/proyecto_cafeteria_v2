@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal - Usuario(Empleado)</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main_empleado.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/utils.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style-principalEmpleado.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+</head>
+<Script Language="JavaScript">
+    function DameLaFechaHora() {
+      var hora = new Date()
+      var hrs = hora.getHours();
+      var min = hora.getMinutes();
+      var hoy = new Date();
+      var m = new Array();
+      var d = new Array()
+      var an= hoy.getYear();
+      m[0]="Enero";  m[1]="Febrero";  m[2]="Marzo";
+      m[3]="Abril";   m[4]="Mayo";  m[5]="Junio";
+      m[6]="Julio";    m[7]="Agosto";   m[8]="Septiembre";
+      m[9]="Octubre";   m[10]="Noviembre"; m[11]="Diciembre";
+      document.write(hoy.getDate());
+      document.write(" de ");
+      document.write(m[hoy.getMonth()]);
+      document.write( " " );
+      document.write("hora: "+hrs+":"+min);
+    }
+</Script>
+<body>
+    <div class = "limiter">
+        <div class = "content-container">
+            <div class="page-header">
+                <h1>Bienvenido - Nombre del usuario(Empleado)</h1>
+                <h2><script>DameLaFechaHora();</script></h2>
+            </div>
+            <div class="wrap-search">
+                <div class="search">
+                    <input type="search" class="search-Term" id = "productSearch" 
+                    placeholder="Buscar...">                
+                    <button type="submit" class="search-Button" id = "doSearch">
+                        <i class="fa fa-search"></i>
+                    </button> 
+                </div>
+            </div>
+            
+            <div class = "helpbox-admin">
+                <h3>Productos en stock</h3>
+                <div class = "content-mosaico">
+                <!--<form>
+                    <div class="form-group">
+                        <label>Cantidad existente</label><br>
+                        <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad para actualizar</label><br>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
+                    </div>
+                </form>-->
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/TE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFETINTO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFECAPUCHINO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFEGRANIZADO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CHOCOLATE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/FRESASCONCREMA.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/POSTRE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/PANKEIS.png') }}" alt="imagen producto">
+                </div>
+                <!--<div class="form-group">
+                    <input class="form-button"type="button" value="Actualizar">
+                </div>-->
+            </div>
+        </div>
+        <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
+    </div>
+</body>
+</html>
