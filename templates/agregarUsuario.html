@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creación de usuario - Administrador</title>
+    <script src="{{ url_for('static',filename='js/inicioSesion.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
@@ -39,7 +40,8 @@
             </div>
 
             <div class = "wrap-content">
-                <form class="product-form-add" action="{{ url_for("add_employee_submit") }}" method="POST" id="form1">
+                <form class="product-form-add" action="{{ url_for("add_employee_submit") }}" method="POST"
+                      id="form1" name="formulario">
                     <!--<h4>Registro de usuarios</h4>-->
                     <label for="productId">Nombre de usuario</label>
                     <div class="wrap-inputs">
@@ -50,7 +52,8 @@
                     <label for="productName">Contraseña</label>            
                     <div class="wrap-inputs">
                             <input class="inputs" type="password" name="Password" id="Password"
-                            placeholder="password">
+                            placeholder="Contraseña">
+                            <img src="{{ url_for('static', filename='images/eye.jpg') }}" width = 30px height=40px onmouseover="mostrarPassword();" onmouseout="ocultarPassword();">
                     </div>
 
                     <label for="productQuantity">Correo electrónico</label>
@@ -64,16 +67,13 @@
                     <span class="container-product-image">
                         <img class="product-img" src="{{url_for('static', filename='images/img-01.png')}}" alt="imagen producto">
                     </span>
+                    <div class="container-button-inblock">
+                        <input type="file"  id="productImage" style="display: none;" form="form1">
+                        <input class="button-image" type="button" value="Subir imagen"
+                               onclick="document.getElementById('product-image').click();" form="form1">
+                    </div>
                 </div>
                       
-                <!--                  
-                <form  action="">
-                    <div class="container-button-inblock">
-                        <input type="file"  id="productImage" style="display: none;">
-                        <input class="button-image" type="button" value="Registrar" 
-                        onclick="document.getElementById('product-image').click();" />                            
-                    </div>
-                </form>-->
             </div>
             <div class="wrap-button">
                 <div class="container-button">

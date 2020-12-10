@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de sesión</title>
+    <script src="{{ url_for('static',filename='js/inicioSesion.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
@@ -19,17 +20,18 @@
                     <img src="{{ url_for('static',filename='images/img-02.jpeg') }}">
                 </div>
 
-                <form class="login-form" action="">
+                <form class="login-form" action="{{ url_for("login") }}" method="POST" name="formulario">
 					<span class="login-form-title">
 						Ingreso de usuario
                     </span>   
                     
                     <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Nombre" id="userName" placeholder="Nombre de usuario">       
+                        <input class="inputs" type="text" name="Name" id="Name" placeholder="Nombre de usuario">
                     </div>
                     <div class="wrap-inputs">
-                        <input class="inputs" type="password" name="Pass" id="userPassword" 
-                        placeholder="Contraseña">    
+                        <input class="inputs" type="password" name="Password" id="Password"
+                        placeholder="Contraseña">
+                        <img src="{{ url_for('static', filename='images/eye.jpg') }}" width = 30px height=40px onmouseover="mostrarPassword();" onmouseout="ocultarPassword();">
                     </div>
                     <div class="container-login-form-btn">
                         <input class="login-form-btn" type="submit" name ="Ingreso" id="buttonLogin" value="Ingresar">
