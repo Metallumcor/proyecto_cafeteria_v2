@@ -39,23 +39,23 @@
             </div>
 
             <div class = "wrap-content">
-                <form class="product-form-add" action="" method="POST">
+                <form class="product-form-add" action="{{ url_for("add_employee_submit") }}" method="POST" id="form1">
                     <!--<h4>Registro de usuarios</h4>-->
                     <label for="productId">Nombre de usuario</label>
                     <div class="wrap-inputs">
-                            <input class="inputs" type="number" name="IdProd" id="productId" 
-                            placeholder="Name">
+                            <input class="inputs" type="text" name="Name" id="Name"
+                            placeholder="Usuario">
                     </div>
  
                     <label for="productName">Contraseña</label>            
                     <div class="wrap-inputs">
-                            <input class="inputs" type="password" name="Nombre" id="productName" 
+                            <input class="inputs" type="password" name="Password" id="Password"
                             placeholder="password">
                     </div>
 
                     <label for="productQuantity">Correo electrónico</label>
                     <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="Quantity" id="productQuantity"
+                        <input class="inputs" type="email" name="email" id="email"
                         placeholder="nombre@...">
                     </div>
                 </form>
@@ -77,10 +77,10 @@
             </div>
             <div class="wrap-button">
                 <div class="container-button">
-                    <button class="buttons" type="button">Atras</button>
+                    <a class="buttons" href="/admin">Atras</a>
                 </div>
                 <div class="container-button">
-                    <button class="buttons" type="button">Agregar empleado</button>
+                    <input class="buttons" type="submit" value="Agregar empleado" form="form1">
                 </div>
             </div>
             <a href="https://www.freepik.es/fotos/fondo"></a>

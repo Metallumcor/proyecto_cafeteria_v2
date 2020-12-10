@@ -60,14 +60,14 @@
                         <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
                     </div>
                 </form>-->
-                    <img class="element" src="{{ url_for('static',filename='images/TE.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/CAFETINTO.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/CAFECAPUCHINO.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/CAFEGRANIZADO.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/CHOCOLATE.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/FRESASCONCREMA.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/POSTRE.png') }}" alt="imagen producto">
-                    <img class="element" src="{{ url_for('static',filename='images/PANKEIS.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/TE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFETINTO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFECAPUCHINO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFEGRANIZADO.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CHOCOLATE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/FRESASCONCREMA.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/POSTRE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/PANKEIS.png') }}" alt="imagen producto">
                 </div>
                 <!--<div class="form-group">
                     <input class="form-button"type="button" value="Actualizar">
@@ -75,18 +75,20 @@
             </div>             
         </div>
         <div class="wrap-button">
+            <form action="">
             <div class="container-button">
-                <button class="buttons" type="button">Atras</button>
+                <a class="buttons" href="/admin">Atras</a>
             </div>
             <div class="container-button">
-                <button class="buttons" type="button">Nuevo producto</button>
+                <a class="buttons" href="/admin/product/add" >Nuevo producto</a>
             </div>
             <div class="container-button">
-                <button class="buttons" type="button">Modificar seleccionado</button>
+                <a class="buttons" href="/admin/product/mod">Modificar seleccionado</a>
             </div>
             <div class="container-button">
                 <button class="buttons" type="button">Eliminar seleccionado</button>
-            </div>                        
+            </div>
+            </form>
         </div>
         <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
     </div>       

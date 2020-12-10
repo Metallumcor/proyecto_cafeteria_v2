@@ -30,6 +30,9 @@
       document.write( " " );
       document.write("hora: "+hrs+":"+min);
     }
+function temp_prod(){
+        window.open("{{ url_for("inventory") }}")
+}
 </Script>
 <body>
     <div class = "limiter">
@@ -61,7 +64,7 @@
                         <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"><br>
                     </div>
                 </form>-->
-                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/TE.png') }}" alt="imagen producto">
+                    <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/TE.png') }}" alt="imagen producto" onclick="temp_prod()">
                     <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFETINTO.png') }}" alt="imagen producto">
                     <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFECAPUCHINO.png') }}" alt="imagen producto">
                     <img class="element" src="{{ url_for('static',filename='images/PRODUCTOS/CAFEGRANIZADO.png') }}" alt="imagen producto">

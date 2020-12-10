@@ -41,17 +41,17 @@
             </div>            
    
             <div class="wrap-content">
-                <form class="product-form-add" action="" method="POST">
+                <form class="product-form-add" action="{{ url_for("mod_product_submit") }}" method="POST" id="form1">
 
                     <label for="productId">Referencia</label>
                     <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="IdProd" id="productId" 
+                        <input class="inputs" type="number" name="Id" id="productId"
                         placeholder="Eg. 13211">
                     </div>
  
                     <label for="productName">Nombre del producto</label>            
                     <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Nombre" id="productName" 
+                        <input class="inputs" type="text" name="Name" id="productName"
                         placeholder="Eg. Empanadas de carne">
                     </div>
 
@@ -74,9 +74,9 @@
                     </span>
                     <form  action="">
                         <div class="container-button-inblock">
-                            <input type="file"  id="productImage" style="display: none;">
-                            <input class="button-image" type="button" value="Subir imagen" 
-                            onclick="document.getElementById('product-image').click();" />                            
+                            <input type="file"  namge="Image" id="Image" style="display: none;" form="form1">
+                            <input class="button-image" type="button" value="Subir imagen"
+                            onclick="document.getElementById('product-image').click();" form="form1">
                         </div>
                     </form>
                 </div>
@@ -84,10 +84,10 @@
         </div>
         <div class="wrap-button">
             <div class="container-button">
-                <button class="buttons" type="button">Atras</button>
+                <a class="buttons" href="/admin/product">Atras</a>
             </div>
             <div class="container-button">
-                <button class="buttons" type="submit">Actualizar producto</button>
+                <input class="buttons" type="submit" value="Actualizar producto" form="form1">
             </div>            
         </div>
         <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>

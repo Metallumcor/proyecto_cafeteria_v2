@@ -40,17 +40,17 @@
             </div>            
 
             <div class="wrap-content">
-                <form class="product-form-add" action="" method="POST">
+                <form class="product-form-add" action="{{ url_for("add_product_submit") }}" method="POST" id="form1">
 
                     <label for="productId">Referencia</label>
                     <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="IdProd" id="productId" 
+                        <input class="inputs" type="number" name="Id" id="productId"
                         placeholder="Eg. 13211">
                     </div>
  
                     <label for="productName">Nombre del producto</label>            
                     <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Nombre" id="productName" 
+                        <input class="inputs" type="text" name="Name" id="productName"
                         placeholder="Eg. Empanadas de carne">
                     </div>
 
@@ -72,22 +72,20 @@
                     <span class="container-product-image">
                         <label for="productImage">Imagen del producto</label>
                     </span>
-                    <form  action="">
-                        <div class="container-button-inblock">
-                            <input type="file"  id="productImage" style="display: none;">
-                            <input class="button-image" type="button" value="Subir imagen" 
-                            onclick="document.getElementById('product-image').click();" />                            
-                        </div>
-                    </form>
+                    <div class="container-button-inblock">
+                        <input type="file"  name="Image" id="product-image" style="display: none;" form="form1">
+                        <input class="button-image" type="button" value="Subir imagen"
+                               onclick="document.getElementById('product-image').click();" form="form1">
+                    </div>
                 </div>
             </div>             
         </div>
         <div class="wrap-button">
             <div class="container-button">
-                <button class="buttons" type="button">Atras</button>                
+                <a class="buttons" href="/admin/product">Atras</a>
             </div>
             <div class="container-button">
-                <button class="buttons" type="submit">Crear producto</button>
+                <input class="buttons" type="submit" form="form1" value="Crear producto">
             </div>
         </div>
         <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
