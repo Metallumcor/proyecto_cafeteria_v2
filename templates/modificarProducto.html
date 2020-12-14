@@ -41,14 +41,14 @@
             </div>            
    
             <div class="wrap-content">
-                <form class="product-form-add" action="{{ url_for("mod_product_submit") }}" method="POST" id="form1">
+                <form class="product-form-add" action="{{ url_for("mod_product") }}" method="POST" id="form1">
 
                     <label for="productId">Referencia</label>
                     <div class="wrap-inputs">
                         <input class="inputs" type="number" name="Id" id="productId"
                         placeholder="Eg. 13211">
                     </div>
- 
+
                     <label for="productName">Nombre del producto</label>            
                     <div class="wrap-inputs">
                         <input class="inputs" type="text" name="Name" id="productName"
@@ -90,7 +90,6 @@
                 <input class="buttons" type="submit" value="Actualizar producto" form="form1">
             </div>            
         </div>
-        <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
-    </div>     
+    </div>
 </body>
 </html>

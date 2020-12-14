@@ -5,90 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar producto</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/inicioSesion.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/utils.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style-producto.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 </head>
-<Script Language="JavaScript">
-    function DameLaFechaHora() {
-      var hora = new Date()
-      var hrs = hora.getHours();
-      var min = hora.getMinutes();
-      var hoy = new Date();
-      var m = new Array();
-      var d = new Array()
-      var an= hoy.getYear();
-      m[0]="Enero";  m[1]="Febrero";  m[2]="Marzo";
-      m[3]="Abril";   m[4]="Mayo";  m[5]="Junio";
-      m[6]="Julio";    m[7]="Agosto";   m[8]="Septiembre";
-      m[9]="Octubre";   m[10]="Noviembre"; m[11]="Diciembre";
-      document.write(hoy.getDate());
-      document.write(" de ");
-      document.write(m[hoy.getMonth()]);
-      document.write( " " );
-      document.write("hora: "+hrs+":"+min);
-    }
-</Script>
 <body>
     <div class = "limiter">
-        <div class = "content-container">
+        <div class="content-container">
             <div class="page-header">
                 <h1>Bienvenido - Nombre de administrador</h1>
                 <h2><script>DameLaFechaHora();</script></h2>
-            </div>            
+            </div>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="wrap-content">
+                    <div class="product-form-add">
+                        <p>{{ form.id.label }}</p>
+                        <div class="wrap-inputs">
+                            {{ form.id(class="inputs") }}
+                        </div>
 
-            <div class="wrap-content">
-                <form class="product-form-add" action="{{ url_for("add_product_submit") }}" method="POST" id="form1">
+                        <p> {{ form.name.label }} </p>
+                        <div class="wrap-inputs">
+                            {{ form.name(class="inputs") }}
+                        </div>
 
-                    <label for="productId">Referencia</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="Id" id="productId"
-                        placeholder="Eg. 13211">
+
+                        <p> {{ form.quantity.label }}</p>
+                        <div class="wrap-inputs">
+                            {{ form.quantity(class="inputs") }}
+                        </div>
+
+                        <p>{{ form.desc.label }}</p>
+                        <div class="wrap-inputs">
+                            {{ form.desc(class="inputs") }}
+                        </div>
                     </div>
- 
-                    <label for="productName">Nombre del producto</label>            
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Name" id="productName"
-                        placeholder="Eg. Empanadas de carne">
-                    </div>
+                    <div class="wrap-product-image">
+                        <span class="container-product-image">
 
-
-                    <label for="productQuantity">Cantidad</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="Quantity" id="productQuantity"
-                        placeholder="Eg. 10">
-                    </div>                  
-
-                    <label for="productDescription">Descripción</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Description" id="productDescription"
-                        placeholder="Eg. Lorem ipsum...">
-                    </div>                  
-                    
-                </form>
-                <div class="wrap-product-image">
-                    <span class="container-product-image">
-                        <label for="productImage">Imagen del producto</label>
-                    </span>
-                    <div class="container-button-inblock">
-                        <input type="file"  name="Image" id="product-image" style="display: none;" form="form1">
-                        <input class="button-image" type="button" value="Subir imagen"
-                               onclick="document.getElementById('product-image').click();" form="form1">
+                        </span>
+                        <div class="container-button-inblock">
+                            <button class="button-image" type="button"
+                               onclick="document.getElementById('product-image').click();">
+                                Subir imagen
+                            </button>
+                            {{ form.img(class="button-image", id="product-image") }}
+                        </div>
                     </div>
                 </div>
-            </div>             
-        </div>
-        <div class="wrap-button">
-            <div class="container-button">
-                <a class="buttons" href="/admin/product">Atras</a>
+                <div class="wrap-button">
+                <div class="container-button">
+                    <a class="buttons" href="/admin/product">Atras</a>
+                </div>
+                <div class="container-button">
+                    {{ form.send(class="buttons") }}
+                </div>
             </div>
-            <div class="container-button">
-                <input class="buttons" type="submit" form="form1" value="Crear producto">
-            </div>
+            </form>
         </div>
-        <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
-    </div>       
+    </div>
 </body>
 </html>

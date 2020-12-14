@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/utils.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style-login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 </head>
 <body>
 
@@ -21,24 +22,27 @@
                 </div>
 
                 <form method="POST" class="login-form" name="formulario" action="" >
+                    {{ form.hidden_tag() }}
 					<span class="login-form-title">
 						Por favor, ingrese la dirección de su correo electronico para recuperar su contraseña
                     </span>
 
-                    <label for="email">Correo electrónico</label>
                     <div class="wrap-inputs">
-                         <input class="inputs" type="email" name="email" id="email"
-                         placeholder="nombre@...">
+                        <div class="inputs">
+                            <div class="inputs-icon">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            {{ form.password(class="inputs-content") }}
+                        </div>
                     </div>
 
                     <div class="container-login-form-btn">
-                        <input class="login-form-btn" type="submit" name ="Ingreso" id="buttonLogin" value="Enviar">
+                        {{ form.send_forgot(class="login-form-btn") }}
                     </div>
 
                 </form>
             </div>
         </div>
-        <a href="https://www.freepik.es/fotos/fondo"></a>
     </div>
 </body>
 </html>

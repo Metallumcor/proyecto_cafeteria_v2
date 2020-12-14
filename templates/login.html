@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/utils.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style-login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
 </head>
 <body>
 
@@ -20,21 +21,30 @@
                     <img src="{{ url_for('static',filename='images/img-02.jpeg') }}">
                 </div>
 
-                <form class="login-form" action="{{ url_for("login") }}" method="POST" name="formulario">
+                <form class="login-form" action="" method="POST">
+                    {{ form.hidden_tag() }}
 					<span class="login-form-title">
 						Ingreso de usuario
                     </span>   
                     
                     <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Name" id="Name" placeholder="Nombre de usuario">
+                        <div class="inputs">
+                            <div class="inputs-icon">
+                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                            </div>
+                            {{ form.name(class="inputs-content") }}
+                        </div>
                     </div>
                     <div class="wrap-inputs">
-                        <input class="inputs" type="password" name="Password" id="Password"
-                        placeholder="Contraseña">
-                        <img src="{{ url_for('static', filename='images/eye.jpg') }}" width = 30px height=40px onmouseover="mostrarPassword();" onmouseout="ocultarPassword();">
+                        <div class="inputs">
+                            <div class="inputs-icon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                            {{ form.password(class="inputs-content") }}
+                        </div>
                     </div>
                     <div class="container-login-form-btn">
-                        <input class="login-form-btn" type="submit" name ="Ingreso" id="buttonLogin" value="Ingresar">
+                        {{ form.send_login(class="login-form-btn") }}
                     </div>
                     <div class="text-center">
                         <a class="message" href="{{ url_for("forgot") }}">¿Olvidó su contraseña?</a>
@@ -42,7 +52,6 @@
                 </form>
             </div>           
         </div>
-        <a href="https://www.freepik.es/fotos/fondo">Foto de Fondo creado por tirachard - www.freepik.es</a>
     </div>
 </body>
 </html>

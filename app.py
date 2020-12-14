@@ -1,44 +1,39 @@
-from flask import Flask, render_template, request, flash
-import forms, os, utils, yagmail, jsonify
+from flask import Flask, render_template, request, flash, redirect
+
+import db
+import forms
+import os
+import utils
+import yagmail
 
 app = Flask(__name__)
 
 app.secret_key = os.urandom(15)
-@app.route('/')
-def home():
-    return render_template('login.html')
 
+
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     try:
+        form = forms.User()
         if request.method == 'POST':
-            username = request.form['Name']
-            password = request.form['Password']
+            database = db.get_db()
+            username = form.name.data
+            password = form.password.data
 
-            if not username:
-                error = "Debes ingresar el usuario"
-                flash(error)
-                return render_template('login.html')
-            if not password:
-                error = "Contraseña es requerida"
-                flash(error)
-                return render_template('login.html')
+            user = database.execute('SELECT * FROM USER WHERE username=? AND password=?',
+                                    (username, password)).fetchone()
 
-            print("usuario" + username + " clave:" + password)
-
-            if username == "Admin" and password == "GrupoD1234":
-                return render_template('principalAdmin.html')
-            elif username == "Empleado" and password == "GrupoD1234":
-                return render_template('principalEmpleado.html')
+            if user is None:
+                database.close()
+                return render_template("login.html", form=form)
             else:
-                error = "usuario y/o contraseña inválidos"
-                flash(error)
-                return render_template('login.html')
-
-        return render_template('login.html')
+                database.close()
+                return redirect("/admin")
+        return render_template("login.html", form=form)
     except TypeError as e:
         print("Ocurrio un error:", e)
-        return render_template('login.html')
+        return render_template('login.html', form=form)
 
 
 @app.route('/admin')
@@ -56,13 +51,8 @@ def product():
     return render_template('producto.html')
 
 
-@app.route('/admin/add-employee')
+@app.route('/admin/add-employee', methods=("GET", "POST"))
 def add_employee():
-    return render_template('agregarUsuario.html')
-
-
-@app.route('/admin/add-employee-done', methods=("GET", "POST"))
-def add_employee_submit():
     try:
         if request.method == 'POST':
             emp_user = request.form['Name']
@@ -90,55 +80,69 @@ def add_employee_submit():
             serverEmail.send(to=emp_email, subject='Activa tu cuenta',
                              contents='Bienvenido, usa este link para activar tu cuenta')
 
-            flash('Revisa tu correo para activar tu cuenta')
-
-            return render_template('login.html')
-        return render_template('agregarUsuario.html')
-    except Exception as e:
-        print("Ocurrio un eror:", e)
+            return redirect("/admin")
+        else:
+            return render_template('agregarUsuario.html')
+    except Exception:
         return render_template('agregarUsuario.html')
 
 
-@app.route('/admin/product/add')
+@app.route('/admin/product/add', methods=("GET", "POST"))
 def add_product():
-    #form_add = forms.Product()
-    #return render_template("agregarProducto.html", form=form_add)
-    return render_template("agregarProducto.html")
-
-
-@app.route('/admin/product/add-done', methods=("GET", "POST"))
-def add_product_submit():
+    form = forms.Product()
     try:
-        if request.method == 'POST':
-            prod_id = request.form['Id']
-            prod_name = request.form['Name']
-            prod_quantity = request.form['Quantity']
-            prod_description = request.form['Description']
-            prod_image = request.form['Image']
+        if form.validate_on_submit():
+            prod_id = form.id.data
+            prod_name = form.name.data
+            prod_quantity = form.quantity.data
+            prod_description = form.desc.data
+            prod_image = form.img.data
+            prod_status = True
 
-            return render_template('producto.html')
-    except Exception as e:
-        return render_template('agregarProducto.html')
+            database = db.get_db()
+
+            if database.execute('SELECT * FROM PRODUCT WHERE prd_id=?', [prod_id]).fetchone() is not None:
+                error = 'El producto ya existe'
+                flash(error)
+                return render_template('agregarProducto.html', form=form)
+
+            database.execute('INSERT INTO PRODUCT (prd_id,name,description,inventory,active) '
+                             'VALUES (?,?,?,?,?)', (prod_id, prod_name, prod_description, prod_quantity,
+                                                    prod_status)
+                             )
+            database.commit()
+            return redirect("/admin/product")
+        return render_template('agregarProducto.html', form=form)
+    except Exception:
+        return render_template('agregarProducto.html', form=form)
 
 
-@app.route('/admin/product/mod')
+@app.route('/admin/product/mod', methods=("GET", "POST"))
 def mod_product():
-    return render_template('modificarProducto.html')
-
-
-@app.route('/admin/product/mod-done', methods=("GET", "POST"))
-def mod_product_submit():
+    form = forms.Product()
     try:
-        if request.method == 'POST':
-            prod_mod_id = request.form['Id']
-            prod_mod_name = request.form['Name']
-            prod_mod_quantity = request.form['Quantity']
-            prod_mod_description = request.form['Description']
-            prod_mod_image = request.form['Image']
+        if form.validate_on_submit():
+            prod_mod_id = form.id.data
+            prod_mod_name = form.name.data
+            prod_mod_quantity = form.quantity.data
+            prod_mod_description = form.desc.data
+            prod_mod_image = form.img.data
 
-            return render_template('producto.html')
+            database = db.get_db()
+            database.execute('UPDATE PRODUCT SET name=?, quantity=?, description=? WHERE prd_id=?',
+                             (prod_mod_name, prod_mod_description, prod_mod_quantity, prod_mod_id)
+                             )
+            database.commit()
+            return redirect("/admin/product")
+        return render_template('modificarProducto.html', form=form)
+    except Exception:
+        return render_template('modificarProducto.html', form=form)
+'''
+        return redirect("/product", form=form)
+        else:
+            render_template("modificarProducto.html", form=form)
     except Exception as e:
-        return render_template('modificarProducto.html')
+        return render_template('modificarProducto.html', form=form)'''
 
 
 @app.route('/employee/product-id')
@@ -148,16 +152,16 @@ def inventory():
 
 @app.route('/forgot', methods=('POST', 'GET'))
 def forgot():
+    form = forms.User()
     try:
-        if request.method == 'POST':
-            email = request.form['email']
+        if form.validate_on_submit():
+            email = form.email.data
             error = None
 
             if not utils.isEmailValid(email):
                 error = 'Correo inválido'
                 flash(error)
-                return render_template('forgot.html')
-
+                return render_template('forgot.html', form=form)
 
             serverEmail = yagmail.SMTP('misiontic.2020.grupod@gmail.com', 'Karen.1234')
 
@@ -166,11 +170,10 @@ def forgot():
 
             flash('Revisa tu correo para activar tu cuenta')
 
-            return render_template('login.html')
-        return render_template('forgot.html')
-    except Exception as e:
-        print("Ocurrio un eror:", e)
-        return render_template('forgot.html')
+            return redirect("/login")
+        return render_template('forgot.html', form=form)
+    except Exception:
+        return render_template('forgot.html', form=form)
 
 
 if __name__ == '__main__':

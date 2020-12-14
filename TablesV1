@@ -1,0 +1,40 @@
+-- Creation of tables - Version 1.0
+CREATE TABLE USER_TYPE(
+  utyp_id INT primary key,
+  type VARCHAR(25) not null 
+);
+
+CREATE TABLE OPERATION_TYPE(
+  otyp_id INT primary key,
+  type VARCHAR(25) not null 
+);
+
+CREATE TABLE USER(
+    usr_id INT primary key,
+    usr_type INT not null,
+    username VARCHAR(45) not null,
+    password VARCHAR(30) not null,
+    email VARCHAR(45) not null,
+    creation_date DATETIME not null,
+    foreign key (usr_type) references USER_TYPE(utyp_id)
+);
+
+CREATE TABLE PRODUCT(
+    prd_id INT primary key,
+    name VARCHAR(60) not null,
+    description VARCHAR(150),
+    inventory INT not null,
+    image BLOB,
+    active BOOLEAN
+);
+
+CREATE TABLE PRODUCT_MANAGEMENT(
+    pmng_id INT primary key,
+    pmng_user INT not null,
+    pmng_product INT not null,
+    pmng_operation INT not null,
+    date DATETIME not null,
+    foreign key (pmng_user) references USER(usr_id),
+    foreign key (pmng_product) references PRODUCT(prd_id),
+    foreign key (pmng_operation) references OPERATION_TYPE(otyp_id)
+);

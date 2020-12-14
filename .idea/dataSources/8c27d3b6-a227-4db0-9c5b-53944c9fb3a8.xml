@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="masterdb">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.20">
+    <root id="1">
+      <ServerVersion>3.31.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <table id="6" parent="2" name="OPERATION_TYPE"/>
+    <table id="7" parent="2" name="PRODUCT"/>
+    <table id="8" parent="2" name="PRODUCT_MANAGEMENT"/>
+    <table id="9" parent="2" name="USER"/>
+    <table id="10" parent="2" name="USER_TYPE"/>
+    <table id="11" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <column id="12" parent="6" name="otyp_id">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+    </column>
+    <column id="13" parent="6" name="type">
+      <Position>2</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="14" parent="6" name="sqlite_autoindex_OPERATION_TYPE_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>otyp_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="15" parent="6">
+      <ColNames>otyp_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_OPERATION_TYPE_1</UnderlyingIndexName>
+    </key>
+    <column id="16" parent="7" name="prd_id">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+    </column>
+    <column id="17" parent="7" name="name">
+      <Position>2</Position>
+      <DataType>VARCHAR(60)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="7" name="description">
+      <Position>3</Position>
+      <DataType>VARCHAR(150)|0s</DataType>
+    </column>
+    <column id="19" parent="7" name="inventory">
+      <Position>4</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="7" name="image">
+      <Position>5</Position>
+      <DataType>BLOB|0s</DataType>
+    </column>
+    <column id="21" parent="7" name="active">
+      <Position>6</Position>
+      <DataType>BOOLEAN|0s</DataType>
+    </column>
+    <index id="22" parent="7" name="sqlite_autoindex_PRODUCT_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>prd_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="23" parent="7">
+      <ColNames>prd_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_PRODUCT_1</UnderlyingIndexName>
+    </key>
+    <column id="24" parent="8" name="pmng_id">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+    </column>
+    <column id="25" parent="8" name="pmng_user">
+      <Position>2</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="pmng_product">
+      <Position>3</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="8" name="pmng_operation">
+      <Position>4</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="8" name="date">
+      <Position>5</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="29" parent="8" name="sqlite_autoindex_PRODUCT_MANAGEMENT_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>pmng_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="30" parent="8">
+      <ColNames>pmng_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_PRODUCT_MANAGEMENT_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="31" parent="8">
+      <ColNames>pmng_user</ColNames>
+      <RefTableName>USER</RefTableName>
+      <RefColNames>usr_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="32" parent="8">
+      <ColNames>pmng_product</ColNames>
+      <RefTableName>PRODUCT</RefTableName>
+      <RefColNames>prd_id</RefColNames>
+    </foreign-key>
+    <foreign-key id="33" parent="8">
+      <ColNames>pmng_operation</ColNames>
+      <RefTableName>OPERATION_TYPE</RefTableName>
+      <RefColNames>otyp_id</RefColNames>
+    </foreign-key>
+    <column id="34" parent="9" name="usr_id">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+    </column>
+    <column id="35" parent="9" name="usr_type">
+      <Position>2</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="9" name="username">
+      <Position>3</Position>
+      <DataType>VARCHAR(45)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="9" name="password">
+      <Position>4</Position>
+      <DataType>VARCHAR(30)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="38" parent="9" name="email">
+      <Position>5</Position>
+      <DataType>VARCHAR(45)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="9" name="creation_date">
+      <Position>6</Position>
+      <DataType>DATETIME|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="40" parent="9" name="sqlite_autoindex_USER_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>usr_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="9">
+      <ColNames>usr_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_USER_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="42" parent="9">
+      <ColNames>usr_type</ColNames>
+      <RefTableName>USER_TYPE</RefTableName>
+      <RefColNames>utyp_id</RefColNames>
+    </foreign-key>
+    <column id="43" parent="10" name="utyp_id">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+    </column>
+    <column id="44" parent="10" name="type">
+      <Position>2</Position>
+      <DataType>VARCHAR(25)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="45" parent="10" name="sqlite_autoindex_USER_TYPE_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>utyp_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="46" parent="10">
+      <ColNames>utyp_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_USER_TYPE_1</UnderlyingIndexName>
+    </key>
+    <column id="47" parent="11" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="48" parent="11" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="49" parent="11" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="50" parent="11" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="51" parent="11" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+  </database-model>
+</dataSource>
