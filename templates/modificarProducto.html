@@ -12,83 +12,70 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="CSS/fonts.css">
 </head>
-<Script Language="JavaScript">
-    function DameLaFechaHora() {
-      var hora = new Date()
-      var hrs = hora.getHours();
-      var min = hora.getMinutes();
-      var hoy = new Date();
-      var m = new Array();
-      var d = new Array()
-      var an= hoy.getYear();
-      m[0]="Enero";  m[1]="Febrero";  m[2]="Marzo";
-      m[3]="Abril";   m[4]="Mayo";  m[5]="Junio";
-      m[6]="Julio";    m[7]="Agosto";   m[8]="Septiembre";
-      m[9]="Octubre";   m[10]="Noviembre"; m[11]="Diciembre";
-      document.write(hoy.getDate());
-      document.write(" de ");
-      document.write(m[hoy.getMonth()]);
-      document.write( " " );
-      document.write("hora: "+hrs+":"+min);
-    }
-</Script>
+
 <body>
     <div class = "limiter">
         <div class = "content-container">
             <div class="page-header">
-                <h1>Bienvenido - Nombre del administrador</h1>
+                <h1>Bienvenido - Nombre del Administrador</h1>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
                 <h2><script>DameLaFechaHora();</script></h2>
-            </div>            
-   
-            <div class="wrap-content">
-                <form class="product-form-add" action="{{ url_for("mod_product") }}" method="POST" id="form1">
-
-                    <label for="productId">Referencia</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="Id" id="productId"
-                        placeholder="Eg. 13211">
-                    </div>
-
-                    <label for="productName">Nombre del producto</label>            
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Name" id="productName"
-                        placeholder="Eg. Empanadas de carne">
-                    </div>
-
-                    <label for="productQuantity">Cantidad</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="number" name="Quantity" id="productQuantity"
-                        placeholder="Eg. 10">
-                    </div>                  
-
-                    <label for="productDescription">Descripción</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="text" name="Description" id="productDescription"
-                        placeholder="Eg. Lorem ipsum...">
-                    </div>                  
-                    
-                </form>
-                <div class="wrap-product-image">
-                    <span class="container-product-image">
-                        <img class="product-img" src="{{url_for('static',filename='images/PRODUCTOS/TE.png')}}" alt="imagen producto">
-                    </span>
-                    <form  action="">
-                        <div class="container-button-inblock">
-                            <input type="file"  namge="Image" id="Image" style="display: none;" form="form1">
-                            <input class="button-image" type="button" value="Subir imagen"
-                            onclick="document.getElementById('product-image').click();" form="form1">
-                        </div>
-                    </form>
-                </div>
-            </div>             
-        </div>
-        <div class="wrap-button">
-            <div class="container-button">
-                <a class="buttons" href="/admin/product">Atras</a>
             </div>
-            <div class="container-button">
-                <input class="buttons" type="submit" value="Actualizar producto" form="form1">
-            </div>            
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="wrap-content">
+                    <div class="product-form-add">
+                        <p>{{ form.id.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.id(class="inputs-content") }}
+                            </div>
+                        </div>
+
+                        <p> {{ form.name.label }} </p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.name(class="inputs-content") }}
+                            </div>
+                        </div>
+
+
+                        <p> {{ form.quantity.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.quantity(class="inputs-content") }}
+                            </div>
+                        </div>
+
+                        <p>{{ form.desc.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.desc(class="inputs-content") }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-product-image">
+                        <span class="container-product-image">
+
+                        </span>
+                        <div class="container-button-inblock">
+                            <button class="button-image" type="button"
+                               onclick="document.getElementById('product-image').click();">
+                                Subir imagen
+                            </button>
+                            {{ form.img(class="button-image", id="product-image") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-button">
+                    <div class="container-button">
+                        <a class="buttons" href="/admin/product">Atras</a>
+                    </div>
+                    <div class="container-button">
+                        {{ form.update_product(class="buttons") }}
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>

@@ -16,7 +16,8 @@
     <div class = "limiter">
         <div class="content-container">
             <div class="page-header">
-                <h1>Bienvenido - Nombre de administrador</h1>
+                <h1>Bienvenido - Nombre del Administrador</h1>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
                 <h2><script>DameLaFechaHora();</script></h2>
             </div>
             <form action="" method="POST">
@@ -25,23 +26,31 @@
                     <div class="product-form-add">
                         <p>{{ form.id.label }}</p>
                         <div class="wrap-inputs">
-                            {{ form.id(class="inputs") }}
+                            <div class="inputs">
+                                {{ form.id(class="inputs-content") }}
+                            </div>
                         </div>
 
                         <p> {{ form.name.label }} </p>
                         <div class="wrap-inputs">
-                            {{ form.name(class="inputs") }}
+                            <div class="inputs">
+                                {{ form.name(class="inputs-content") }}
+                            </div>
                         </div>
 
 
                         <p> {{ form.quantity.label }}</p>
                         <div class="wrap-inputs">
-                            {{ form.quantity(class="inputs") }}
+                            <div class="inputs">
+                                {{ form.quantity(class="inputs-content") }}
+                            </div>
                         </div>
 
                         <p>{{ form.desc.label }}</p>
                         <div class="wrap-inputs">
-                            {{ form.desc(class="inputs") }}
+                            <div class="inputs">
+                                {{ form.desc(class="inputs-content") }}
+                            </div>
                         </div>
                     </div>
                     <div class="wrap-product-image">
@@ -58,13 +67,13 @@
                     </div>
                 </div>
                 <div class="wrap-button">
-                <div class="container-button">
-                    <a class="buttons" href="/admin/product">Atras</a>
+                    <div class="container-button">
+                        <a class="buttons" href="/admin/product">Atras</a>
+                    </div>
+                    <div class="container-button">
+                        {{ form.send(class="buttons") }}
+                    </div>
                 </div>
-                <div class="container-button">
-                    {{ form.send(class="buttons") }}
-                </div>
-            </div>
             </form>
         </div>
     </div>

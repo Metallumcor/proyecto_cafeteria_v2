@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, TextAreaField, FileField, PasswordField
+from wtforms import StringField, IntegerField, SubmitField, TextAreaField, FileField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, Optional, NumberRange, ValidationError
 
 
@@ -9,7 +9,12 @@ class User(FlaskForm):
                                                        Length(min=8, max=20)])
     email = StringField("Correo", validators=[DataRequired(message="Este campo es obligatorio")],
                         render_kw={"placeholder": "nombre@"})
+    '''img = FileField("Subir imagen", validators=[DataRequired(message="Este campo es obligatorio")],
+                    render_kw={"style": "visibility: hidden"})'''
+    role_choices = ["Administrador", "Empleado"]
+    role = SelectField("Rol", choices=role_choices, validators=[Optional(True)])
     send_login = SubmitField("Ingreso")
+    add_user = SubmitField("Agregar")
     send_forgot = SubmitField("Enviar correo")
 
 
@@ -24,3 +29,4 @@ class Product(FlaskForm):
     img = FileField("Subir imagen", validators=[DataRequired(message="Este campo es obligatorio")],
                     render_kw={"style": "visibility: hidden"})
     send = SubmitField("Crear producto")
+    update_product = SubmitField("Actualizar producto")

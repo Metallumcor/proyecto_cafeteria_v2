@@ -35,9 +35,10 @@
     <div class = "limiter">
         <div class = "content-container">
             <div class="page-header">
-                <h1>Bienvenido - Nombre del Usuario(Empleado)</h1>
+                <h1>Bienvenido - Nombre del Empleado</h1>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
                 <h2><script>DameLaFechaHora();</script></h2>
-            </div>            
+            </div>
             <div class="wrap-search">
                 <div class="search">
                     <input type="search" class="search-Term" id = "productSearch" 
@@ -97,10 +98,10 @@
                     
                 </div>
             </div>
-        </div>
-        <div class="wrap-button">
-            <div class="container-button">
-                <a class="button" href="/employee/">Atras</a>
+            <div class="wrap-button">
+                <div class="container-button">
+                    <a class="button" href="/employee/">Atras</a>
+                </div>
             </div>
         </div>
     </div>

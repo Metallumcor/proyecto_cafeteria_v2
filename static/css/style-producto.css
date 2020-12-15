@@ -158,7 +158,7 @@ h2{
     font-size: 18px;
 }
 
-.inputs {
+/*.inputs {
     font-family: Poppins-Medium;
     font-size: 15px;
     line-height: 1.5;
@@ -169,6 +169,28 @@ h2{
     height: 2em;
     border-radius: 2em;
     padding: 0 0em 0 1em;
+}*/
+
+.inputs {
+    position: relative;
+    display: block;
+}
+
+.inputs-content{
+    font-family: Poppins-Medium;
+    font-size: 18px;
+    line-height: 1.5;
+    color: #666666;
+    background: #e6e6e6;
+
+
+    /*width: 100%;*/
+    /*border: 0.3em solid #333333;*/
+    border-right: none;
+    padding: 0 30px 0 18px;
+    height: 2em;
+    border-radius: 1em 1em 1em 1em;
+    outline: none;
 }
 
 .wrap-button{

@@ -11,78 +11,64 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/utils.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style-producto.css') }}">
 </head>
-<Script Language="JavaScript">
-    function DameLaFechaHora() {
-      var hora = new Date()
-      var hrs = hora.getHours();
-      var min = hora.getMinutes();
-      var hoy = new Date();
-      var m = new Array();
-      var d = new Array()
-      var an= hoy.getYear();
-      m[0]="Enero";  m[1]="Febrero";  m[2]="Marzo";
-      m[3]="Abril";   m[4]="Mayo";  m[5]="Junio";
-      m[6]="Julio";    m[7]="Agosto";   m[8]="Septiembre";
-      m[9]="Octubre";   m[10]="Noviembre"; m[11]="Diciembre";
-      document.write(hoy.getDate());
-      document.write(" de ");
-      document.write(m[hoy.getMonth()]);
-      document.write( " " );
-      document.write("hora: "+hrs+":"+min);
-    }
-</Script>
 <body>
     <div class = "limiter">
         <div class = "content-container">
             <div class="page-header">
-                <h1>Bienvenido - Nombre de administrador</h1>
+                <h1>Bienvenido - Nombre del Administrador</h1>
+                <a href="{{ url_for('logout') }}">Cerrar sesión</a>
                 <h2><script>DameLaFechaHora();</script></h2>
             </div>
-
+            <form method="POST" action="">
             <div class = "wrap-content">
-                <form class="product-form-add" action="{{ url_for("add_employee") }}" method="POST"
-                      id="form1" name="formulario">
-                    <!--<h4>Registro de usuarios</h4>-->
-                    <label for="productId">Nombre de usuario</label>
-                    <div class="wrap-inputs">
-                            <input class="inputs" type="text" name="Name" id="Name"
-                            placeholder="Usuario">
+            {{ form.hidden_tag() }}
+
+                    <div class="product-form-add">
+                        <p> {{ form.name.label }}</p>
+                        <div class="wrap-inputs">
+
+                            <div class="inputs">
+                                {{ form.name(class="inputs-content") }}
+                            </div>
+                        </div>
+
+                        <p>{{ form.password.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.password(class="inputs-content") }}
+                            </div>
+                        </div>
+
+                        <p>{{ form.email.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.email(class="inputs-content") }}
+                            </div>
+                        </div>
+
+                        <p>{{ form.role.label }}</p>
+                        <div class="wrap-inputs">
+                            <div class="inputs">
+                                {{ form.role(class="inputs-content") }}
+                            </div>
+                        </div>
                     </div>
- 
-                    <label for="productName">Contraseña</label>            
-                    <div class="wrap-inputs">
-                            <input class="inputs" type="password" name="Password" id="Password"
-                            placeholder="Contraseña">
-                            <img src="{{ url_for('static', filename='images/eye.jpg') }}" width = 30px height=40px onmouseover="mostrarPassword();" onmouseout="ocultarPassword();">
+                    <div class="wrap-product-image">
+                         <span class="container-product-image">
+                            <img class="product-img" src="{{url_for('static', filename='images/img-01.png')}}" alt="imagen producto">
+                         </span>
                     </div>
 
-                    <label for="productQuantity">Correo electrónico</label>
-                    <div class="wrap-inputs">
-                        <input class="inputs" type="email" name="email" id="email"
-                        placeholder="nombre@...">
-                    </div>
-                </form>
-            
-                <div class="wrap-product-image">
-                    <span class="container-product-image">
-                        <img class="product-img" src="{{url_for('static', filename='images/img-01.png')}}" alt="imagen producto">
-                    </span>
-                    <div class="container-button-inblock">
-                        <input type="file"  id="productImage" style="display: none;" form="form1">
-                        <input class="button-image" type="button" value="Subir imagen"
-                               onclick="document.getElementById('product-image').click();" form="form1">
-                    </div>
-                </div>
-                      
             </div>
             <div class="wrap-button">
                 <div class="container-button">
                     <a class="buttons" href="/admin">Atras</a>
                 </div>
                 <div class="container-button">
-                    <input class="buttons" type="submit" value="Agregar empleado" form="form1">
+                    {{ form.add_user(class="buttons") }}
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </body>
